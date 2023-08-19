@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import CardActions from '@mui/material/CardActions';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
@@ -13,10 +12,13 @@ const NewMessage = ({socket}) => {
   };
 
   return (
-    <CardActions disableSpacing>
       <Box 
         component="form"
-        sx={{ width: 1 }} 
+        sx={{ 
+          width: 1/2,
+          bottom: 0,
+          position: 'fixed'
+         }} 
         onSubmit={submitForm}
       >
         <TextField
@@ -29,7 +31,6 @@ const NewMessage = ({socket}) => {
           }}
         />
       </Box>
-    </CardActions>
   );
 };
 

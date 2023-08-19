@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import CardContent from '@mui/material/CardContent';
-
+import { List, ListItem, ListItemText } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 
 function Messages({ socket }) {
   const [messages, setMessages] = useState({});
@@ -23,24 +25,37 @@ function Messages({ socket }) {
   }, [socket]);
 
   return (
-    <div className="message-list">
-      <CardContent sx={{backgroundColor: "#ffe9ec"}}>
+    <List sx={{maxWidth: '700px', width:'100%'}} >
         {[...Object.values(messages)]
           .sort((a, b) => a.time - b.time)
           .map((message) => (
-            <div
+            <ListItem
               key={message.id}
-              className="message-container"
+              sx={{display: 'flex', flexDirection: 'row'}}
               title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
             >
-              <span className="user">{message.user.name}:</span>
-              <span className="message">{message.value}</span>
-              <span className="date">{new Date(message.time).toLocaleTimeString()}</span>
-            </div>
+              <ListItemAvatar>
+                <Avatar alt="Anonymous" />
+              </ListItemAvatar>
+              <ListItemText
+                primary={message.user.name}
+                secondary={
+                  <div>
+                    <span className="date">{new Date(message.time).toLocaleTimeString()}-</span>
+                    <Typography
+                      className="message"
+                      sx={{ display: 'inline' }}
+                      component="span"
+                      variant="body1"
+                      color="text.primary"
+                    >{message.value}</Typography>
+                  </div>
+                }
+              />
+            </ListItem>
           ))
         }
-      </CardContent>
-    </div>
+    </List>
   );
 }
 
