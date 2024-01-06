@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { List, ListItem, ListItemText } from '@mui/material';
+import { Box, List, ListItem, ListItemText } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
@@ -25,7 +25,15 @@ function Messages({ socket }) {
   }, [socket]);
 
   return (
-    <List sx={{maxWidth: '700px', width:'100%'}} >
+    <Box
+      component= 'div'
+      sx={{
+        height: 600,
+        backgroundColor: 'gray',
+        overflow: 'scroll'
+      }}
+    >
+        <List sx={{width:'100%'}} >
         {[...Object.values(messages)]
           .sort((a, b) => a.time - b.time)
           .map((message) => (
@@ -55,7 +63,9 @@ function Messages({ socket }) {
             </ListItem>
           ))
         }
-    </List>
+      </List>
+    </Box>
+
   );
 }
 

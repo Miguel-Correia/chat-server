@@ -15,9 +15,11 @@ const NewMessage = ({socket}) => {
       <Box 
         component="form"
         sx={{ 
-          width: 1/2,
+          width: 1,
           bottom: 0,
-          position: 'fixed'
+          position: 'fixed',
+          alignItems: 'center',
+          justifyContent: 'center'
          }} 
         onSubmit={submitForm}
       >

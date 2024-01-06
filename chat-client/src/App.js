@@ -3,6 +3,8 @@ import io from 'socket.io-client';
 import Messages from './components/Messages';
 import MessageInput from './components/MessageInput';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+
 
 import './App.css';
 
@@ -18,9 +20,17 @@ function App() {
   return (
     <div className="App">
 		{ socket ? (
-			<div className="chat-container">
-				<Messages socket={socket} />
-				<MessageInput socket={socket} />
+			<div >
+				<Grid container spacing={1}>
+  					<Grid item xs={4}>
+  					  	<div style={{backgroundColor: 'black'}}>sadasd</div>
+  					</Grid>
+  					<Grid item xs={8}>
+					  	<Messages socket={socket} />
+						<MessageInput socket={socket} />
+  					</Grid>
+				</Grid>
+				
 			</div>
 		) : 
 		(
