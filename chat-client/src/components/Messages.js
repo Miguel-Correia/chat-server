@@ -29,11 +29,12 @@ function Messages({ socket }) {
       component= 'div'
       sx={{
         height: 600,
-        backgroundColor: 'gray',
-        overflow: 'scroll'
+        backgroundColor: '#48455b',
+        overflowY: 'scroll',  
+        overflowX: 'hidden'
       }}
     >
-        <List sx={{width:'100%'}} >
+        <List sx={{width:'100%', maxWidth:'460px'}} >
         {[...Object.values(messages)]
           .sort((a, b) => a.time - b.time)
           .map((message) => (
@@ -46,13 +47,29 @@ function Messages({ socket }) {
                 <Avatar alt="Anonymous" />
               </ListItemAvatar>
               <ListItemText
-                primary={message.user.name}
+                sx={{
+                  outline: "2px solid #84b2a9",
+                  borderRadius: "8px",
+                  padding: '10px',
+                  backgroundColor: '#84b2a9'
+                }}
+                primary={
+                  <React.Fragment>
+                    {message.user.name} -
+                    <Typography 
+                      className="date"
+                      component="span"
+                      variant="caption" 
+                    >
+                      {' ' + new Date(message.time).toLocaleTimeString()}
+                    </Typography>
+                  </React.Fragment>
+                }
                 secondary={
                   <div>
-                    <span className="date">{new Date(message.time).toLocaleTimeString()}-</span>
                     <Typography
                       className="message"
-                      sx={{ display: 'inline' }}
+                      sx={{ display: 'inline', overflowWrap: 'break-word'}}
                       component="span"
                       variant="body1"
                       color="text.primary"
