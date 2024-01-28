@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Box, List, ListItem, ListItemText } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import MessageAvatar from './MessageAvatar';
+import MessageBody from './MessageBody';
 
 function Messages({ socket }) {
   const [messages, setMessages] = useState({});
+  const messagesEndRef = useRef(null);
+  
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+
 
   useEffect(() => {
     const messageListener = (message) => {
@@ -24,6 +30,10 @@ function Messages({ socket }) {
     };
   }, [socket]);
 
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages]);
+
   return (
     <Box
       component= 'div'
@@ -37,50 +47,19 @@ function Messages({ socket }) {
         <List sx={{width:'100%', maxWidth:'460px'}} >
         {[...Object.values(messages)]
           .sort((a, b) => a.time - b.time)
-          .map((message) => (
+          .map((message, index) => (
             <ListItem
               key={message.id}
               sx={{display: 'flex', flexDirection: 'row'}}
               title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
             >
-              <ListItemAvatar>
-                <Avatar alt="Anonymous" />
-              </ListItemAvatar>
-              <ListItemText
-                sx={{
-                  outline: "2px solid #84b2a9",
-                  borderRadius: "8px",
-                  padding: '10px',
-                  backgroundColor: '#84b2a9'
-                }}
-                primary={
-                  <React.Fragment>
-                    {message.user.name} -
-                    <Typography 
-                      className="date"
-                      component="span"
-                      variant="caption" 
-                    >
-                      {' ' + new Date(message.time).toLocaleTimeString()}
-                    </Typography>
-                  </React.Fragment>
-                }
-                secondary={
-                  <div>
-                    <Typography
-                      className="message"
-                      sx={{ display: 'inline', overflowWrap: 'break-word'}}
-                      component="span"
-                      variant="body1"
-                      color="text.primary"
-                    >{message.value}</Typography>
-                  </div>
-                }
-              />
+              <MessageAvatar message={message}/>
+              <MessageBody message={message} prevMessage={index != 0 ? messages[index-1] : null} />
             </ListItem>
           ))
         }
       </List>
+      <div ref={messagesEndRef} />
     </Box>
 
   );

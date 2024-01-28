@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 
 
@@ -11,11 +12,12 @@ const NewMessage = ({socket}) => {
     setValue('');
   };
 
+
   return (
       <Box 
         component="form"
         sx={{ 
-          width: 1,
+          width: 2/3,
           bottom: 0,
           position: 'fixed',
           alignItems: 'center',
@@ -24,12 +26,23 @@ const NewMessage = ({socket}) => {
         onSubmit={submitForm}
       >
         <TextField
-          fullWidth 
+          sx={{
+            backgroundColor: 'white',
+          }}
+          fullWidth
           autoFocus
+          multiline
+          maxRows={4}
+          variant="filled"
           value={value}
           placeholder="Type your message"
           onChange={(e) => {
             setValue(e.currentTarget.value);
+          }}
+          onKeyDown={(e) => {
+            if(e.key == 'Enter'){
+              submitForm(e)
+            }
           }}
         />
       </Box>

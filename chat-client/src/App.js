@@ -21,7 +21,7 @@ function App() {
     <div className="App">
 		{ socket ? (
 			<div >
-				<Grid container spacing={1}>
+				<Grid container>
   					<Grid item xs={4}>
   					  	<div style={{backgroundColor: 'black'}}>sadasd</div>
   					</Grid>
