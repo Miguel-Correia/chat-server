@@ -5,7 +5,7 @@ import Avatar from '@mui/material/Avatar';
 function MessageAvatar({ message }) {
     return (
         <ListItemAvatar>
-            <Avatar alt="Anonymous" />
+        	<Avatar alt="Anonymous" />
         </ListItemAvatar>
     );
 }

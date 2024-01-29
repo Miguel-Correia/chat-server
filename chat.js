@@ -4,24 +4,24 @@ const messages = new Set();
 const users = new Map();
 
 const defaultUser = {
-  id: 'anon',
-  name: 'Anonymous',
+  	id: 'anon',
+  	name: 'Anonymous',
 };
 
 class Connection {
     constructor(io, socket) {
-      this.socket = socket;
-      this.io = io;
-  
-      socket.on('getMessages', () => this.getMessages());
-      socket.on('message', (value) => this.handleMessage(value));
-      socket.on('connect_error', (err) => {
-        console.log(`connect_error due to ${err.message}`);
-      });
+      	this.socket = socket;
+      	this.io = io;
+		
+      	socket.on('getMessages', () => this.getMessages());
+      	socket.on('message', (value) => this.handleMessage(value));
+      	socket.on('connect_error', (err) => {
+      	  console.log(`connect_error due to ${err.message}`);
+      	});
     }
     
     getMessages() {
-      messages.forEach((message) => this.sendMessage(message));
+      	messages.forEach((message) => this.sendMessage(message));
     }
 
     sendMessage(message) {
@@ -29,16 +29,26 @@ class Connection {
         this.io.sockets.emit('message', message);
     }
 
-    handleMessage(value) {
-      const message = {
-        id: uuidv4(),
-        user: users.get(this.socket) || defaultUser,
-        value,
-        time: Date.now()
-      };
+    getLastMessage(msg){
+      	var value = Array.from(msg).pop()
+      	return value;
+    }
 
-      messages.add(message);
-      this.sendMessage(message);
+    handleMessage(value) {
+      	const message = {
+      	  	id: uuidv4(),
+      	  	user: users.get(this.socket) || defaultUser,
+      	  	value,
+      	  	time: Date.now(),
+      	  	linked: false
+      	};
+
+      	var prevMessage = this.getLastMessage(messages)
+      	if (prevMessage != null && prevMessage.user.id == message.user.id)
+        	message.linked = true;
+
+      	messages.add(message);
+      	this.sendMessage(message);
     }
 
     disconnect() {
@@ -49,9 +59,9 @@ class Connection {
 
 function chat(io) {
     io.on('connection', (socket) => {
-      console.log("New conection")
-      return new Connection(io, socket);   
+      	console.log("New conection")
+      	return new Connection(io, socket);   
     });
-  };
+};
   
-  module.exports = chat;
+module.exports = chat;
