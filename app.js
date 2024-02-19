@@ -15,11 +15,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/login', (req, res) => {
+    console.log('Checking credentials')
+    //TODO: check credentials
     res.send({
       token: 'test123'
     });
 });
 
-app.listen(8081, () => console.log('API is running on http://localhost:8081/login'));
 
 module.exports = app;
