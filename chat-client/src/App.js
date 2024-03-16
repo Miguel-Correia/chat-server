@@ -24,13 +24,13 @@ function App() {
   	return (
     	<div className="App">
 			{ socket ? (
-				<div >
+				<div>
 					<Grid container>
   						<Grid item xs={4}>
-  						  	<div style={{backgroundColor: 'black'}}>sadasd</div>
+  						  	
   						</Grid>
-  						<Grid item xs={8}>
-						  	<Messages socket={socket} />
+  						<Grid item xs={8} >
+							<Messages socket={socket} />
 							<MessageInput socket={socket} />
   						</Grid>
 					</Grid>

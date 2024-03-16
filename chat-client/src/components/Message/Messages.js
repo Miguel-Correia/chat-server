@@ -36,10 +36,11 @@ function Messages({ socket }) {
 		<Box
 			component= 'div'
 			sx={{
-				height: 600,
-				backgroundColor: '#48455b',
+				height: '95vh',
+				backgroundColor: '#292929',
 				overflowY: 'scroll',  
-				overflowX: 'hidden'
+				overflowX: 'hidden',
+				paddingBottom: 5
 			}}
 		>
 				<List sx={{width:'100%', maxWidth:'460px'}} >
