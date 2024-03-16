@@ -18,7 +18,7 @@ const NewMessage = ({socket}) => {
   	      component="form"
   	      sx={{ 
   	        width: 2/3,
-  	        bottom: 0,
+			bottom: 1,
   	        position: 'fixed',
   	        alignItems: 'center',
   	        justifyContent: 'center'
