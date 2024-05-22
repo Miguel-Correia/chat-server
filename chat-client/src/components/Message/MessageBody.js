@@ -6,10 +6,10 @@ function MessageBody({message}){
   	return (
       	<ListItemText
       	    sx={{
-      	        outline: "2px solid #84b2a9",
+      	        outline: "2px solid #4c8cba",
       	        borderRadius: "8px",
       	        padding: '10px',
-      	        backgroundColor: '#84b2a9'
+      	        backgroundColor: '#4c8cba'
       	    }}
       	    primary={
       	        <React.Fragment>

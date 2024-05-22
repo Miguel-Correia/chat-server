@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Login from './components/Login/Login';
 import './App.css';
+import ContactBar from './components/ContactBar/ContactBar';
 
 function App() {
 	const [socket, setSocket] = useState(null);
@@ -27,6 +28,7 @@ function App() {
 				<div >
 					<Grid container>
   						<Grid item xs={4}>
+  						  	<ContactBar />
   						</Grid>
   						<Grid item xs={8}>
 						  	<Messages socket={socket} userInfo={token.userName} />

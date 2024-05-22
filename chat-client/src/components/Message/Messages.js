@@ -37,10 +37,10 @@ function Messages({ socket, userInfo }) {
 		<Box
 			component= 'div'
 			sx={{
-				height: 600,
-				backgroundColor: '#48455b',
+				height: '92vh',	
 				overflowY: 'scroll',  
-				overflowX: 'hidden'
+				overflowX: 'hidden',
+				paddingBottom: 1
 			}}
 		>
 				<List sx={{width:'100%', maxWidth:'460px'}} >
