@@ -3,7 +3,7 @@ import { Box, List, ListItem, ListItemText } from '@mui/material';
 import MessageAvatar from './MessageAvatar';
 import MessageBody from './MessageBody';
 
-function Messages({ socket }) {
+function Messages({ socket, userInfo }) {
 	const [messages, setMessages] = useState({});
 	const messagesEndRef = useRef(null);
 	
@@ -16,6 +16,7 @@ function Messages({ socket }) {
 			setMessages((prevMessages) => {
 				const newMessages = {...prevMessages};
 				newMessages[message.id] = message;
+				console.log(message);
 				return newMessages;
 			});
 		};

@@ -17,8 +17,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', (req, res) => {
     console.log('Checking credentials')
     //TODO: check credentials
+    var username = req.body["username"];
     res.send({
-      token: 'test123'
+      token: 'test123',
+      userName: username
     });
 });
 

@@ -4,11 +4,11 @@ import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 
 
-const NewMessage = ({socket}) => {
+const NewMessage = ({socket, userInfo}) => {
   	const [value, setValue] = useState('');
   	const submitForm = (e) => {
     	e.preventDefault();
-    	socket.emit('message', value);
+    	socket.emit('message', {userInfo, value});
     	setValue('');
   	};
 

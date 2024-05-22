@@ -27,11 +27,10 @@ function App() {
 				<div >
 					<Grid container>
   						<Grid item xs={4}>
-  						  	<div style={{backgroundColor: 'black'}}>sadasd</div>
   						</Grid>
   						<Grid item xs={8}>
-						  	<Messages socket={socket} />
-							<MessageInput socket={socket} />
+						  	<Messages socket={socket} userInfo={token.userName} />
+							<MessageInput socket={socket} userInfo={token.userName} />
   						</Grid>
 					</Grid>
 

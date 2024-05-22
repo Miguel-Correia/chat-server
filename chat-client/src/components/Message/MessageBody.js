@@ -13,7 +13,7 @@ function MessageBody({message}){
       	    }}
       	    primary={
       	        <React.Fragment>
-      	        {message.user.name} -
+      	        {message.user} -
       	        <Typography 
       	            className="date"
       	            component="span"
