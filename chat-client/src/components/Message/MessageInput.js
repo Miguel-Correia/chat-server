@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 
 
@@ -40,7 +39,7 @@ const NewMessage = ({socket, userInfo}) => {
   	          setValue(e.currentTarget.value);
   	        }}
   	        onKeyDown={(e) => {
-  	          if(e.key == 'Enter'){
+  	          if(e.key === 'Enter'){
   	            submitForm(e)
   	          }
   	        }}

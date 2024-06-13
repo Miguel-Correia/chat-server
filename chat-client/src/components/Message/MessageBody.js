@@ -2,14 +2,17 @@ import React from "react";
 import { ListItemText } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-function MessageBody({message}){
+function MessageBody({message, messageOwner}){
+
+	var color = messageOwner? '#4c8cba' : '#929fa8'
+
   	return (
       	<ListItemText
       	    sx={{
-      	        outline: "2px solid #4c8cba",
+      	        //outline: "2px solid #4c8cba",
       	        borderRadius: "8px",
       	        padding: '10px',
-      	        backgroundColor: '#4c8cba'
+      	        backgroundColor: color
       	    }}
       	    primary={
       	        <React.Fragment>

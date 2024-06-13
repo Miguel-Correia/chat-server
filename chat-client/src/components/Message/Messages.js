@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Box, List, ListItem, ListItemText } from '@mui/material';
-import MessageAvatar from './MessageAvatar';
-import MessageBody from './MessageBody';
+import { Box, List } from '@mui/material';
+import MessageBox from './MessageBox';
 
 function Messages({ socket, userInfo }) {
 	const [messages, setMessages] = useState({});
@@ -43,18 +42,11 @@ function Messages({ socket, userInfo }) {
 				paddingBottom: 1
 			}}
 		>
-				<List sx={{width:'100%', maxWidth:'460px'}} >
+				<List sx={{width:'100%'}} >
 				{[...Object.values(messages)]
 					.sort((a, b) => a.time - b.time)
 					.map((message) => (
-						<ListItem
-							key={message.id}
-							sx={{display: 'flex', flexDirection: 'row'}}
-							title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
-						>
-							<MessageAvatar message={message}/>
-							<MessageBody message={message}/>
-						</ListItem>
+						<MessageBox message={message} userInfo={userInfo} />
 					))
 				}
 			</List>
